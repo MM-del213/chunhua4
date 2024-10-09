@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>精彩内容展示平台</title>
+    <style>
+      /* 重置和全局样式 */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Helvetica Neue", sans-serif;
+        background-image: url("BIGI1.jpeg"); /* 替换为你的高质量背景图片路径 */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+      }
+
+      /* 头部 */
+      header {
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 32px;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav li {
+        margin-left: 20px;
+      }
+
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        transition: color 0.3s ease;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      nav a:hover {
+        color: #ddd;
+      }
+
+      /* 主要内容 */
+      .main-content {
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .page-title {
+        font-size: 48px;
+        margin-bottom: 80px;
+        text-align: center;
+        font-weight: bold;
+        text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        align-items: center;
+        justify-items: center;
+      }
+
+      .grid-item {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        width: 300px; /* 放大九宫格 */
+        height: 300px; /* 放大九宫格 */
+        transition: transform 0.5s ease;
+      }
+
+      .grid-item:hover {
+        transform: scale(1.1);
+      }
+
+      .grid-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px 10px 0 0;
+      }
+
+      .item-description {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        padding: 8px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 500;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .grid-item:hover.item-description {
+        opacity: 1;
+      }
+
+      /* 底部 */
+      footer {
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        text-align: center;
+        font-size: 14px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      /* 时钟和秒表样式 */
+      #clockAndStopwatch {
+        font-size: 36px;
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .time-section {
+        margin: 0 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>精彩内容展示平台</h1>
+      <nav>
+        <li id="timeSlot"></li>
+      </nav>
+    </header>
+    <div class="main-content">
+      <h2 class="page-title">精彩绝伦，魅力无限。</h2>
+      <div class="grid-container">
+        <a href="tanchisheyouxi.html">
+          <div class="grid-item">
+            <img src="tanchisheyouxitubiao.jpeg" alt="Image 1" />
+          </div>
+        </a>
+        <a href="wenanyemian.html">
+          <div class="grid-item">
+            <img src="wenan.jpeg" alt="Image 2" />
+          </div>
+        </a>
+        <a href="tianshu.HTML">
+          <div class="grid-item">
+            <img src="tianshup.png" alt="Image 3" />
+          </div>
+        </a>
+        <a href="bizhiyemian.html">
+          <div class="grid-item">
+            <img src="bizgiyubiao.jpeg" alt="Image 4" />
+          </div>
+        </a>
+        <a href="">
+          <div class="grid-item">
+            <img src="" alt="Image 5" />
+          </div>
+        </a>
+        <a href="page6.html">
+          <div class="grid-item">
+            <img src="image6.jpg" alt="Image 6" />
+          </div>
+        </a>
+        <a href="page7.html">
+          <div class="grid-item">
+            <img src="image7.jpg" alt="Image 7" />
+          </div>
+        </a>
+        <a href="page8.html">
+          <div class="grid-item">
+            <img src="image8.jpg" alt="Image 8" />
+          </div>
+        </a>
+        <a href="page9.html">
+          <div class="grid-item">
+            <img src="image9.jpg" alt="Image 9" />
+          </div>
+        </a>
+        <a href="page10.html">
+          <div class="grid-item">
+            <img src="image10.jpg" alt="Image 10" />
+          </div>
+        </a>
+        <a href="page11.html">
+          <div class="grid-item">
+            <img src="image11.jpg" alt="Image 11" />
+          </div>
+          <a href="page10.html">
+            <div class="grid-item">
+              <img src="image10.jpg" alt="Image 10" />
+            </div>
+        </a>
+      </div>
+      <div id="clockAndStopwatch"></div>
+    </div>
+    <footer>© 2024 精彩内容展示平台。所有权利保留。</footer>
+    <script>
+      let seconds = 0;
+      let interval;
+
+      function updateTimeSlot() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const timeText = `${hours}:${minutes}`;
+        document.getElementById("timeSlot").textContent = timeText;
+      }
+
+      function updateClockAndStopwatch() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const secondsNow = now.getSeconds();
+        const timeString = `${hours.toString().padStart(2, "0")}:${minutes
+          .toString()
+          .padStart(2, "0")}:${secondsNow.toString().padStart(2, "0")}`;
+        const stopwatchTime = `${Math.floor(seconds / 3600)}:${Math.floor(
+          (seconds % 3600) / 60
+        )}:${seconds % 60}`;
+        document.getElementById(
+          "clockAndStopwatch"
+        ).innerHTML = `<div class="time-section">时钟：${timeString}</div><div class="time-section"></div>`;
+      }
+
+      function startStopwatch() {
+        interval = setInterval(() => {
+          seconds++;
+          updateClockAndStopwatch();
+        }, 1000);
+      }
+
+      setInterval(updateTimeSlot, 1000);
+      startStopwatch();
+      updateTimeSlot();
+      updateClockAndStopwatch();
+    </script>
+  </body>
+</html>

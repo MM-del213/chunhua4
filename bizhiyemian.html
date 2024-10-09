@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>高级壁纸网页</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Montserrat", sans-serif;
+        background-color: #fafafa;
+        transition: background-color 0.3s ease;
+      }
+
+      header {
+        background-color: #222;
+        color: #fff;
+        padding: 25px;
+        text-align: center;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        font-size: 40px;
+        margin: 0;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 30px;
+        gap: 20px;
+      }
+
+      .wallpaper {
+        width: 320px;
+        height: 220px;
+        background-size: cover;
+        background-position: center;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        position: relative;
+        transition: transform 0.4s ease;
+        cursor: pointer;
+      }
+
+      .wallpaper:hover {
+        transform: scale(1.08);
+      }
+
+      .action-buttons-container {
+        text-align: center;
+        margin-top: 30px;
+        background-color: rgba(238, 238, 238, 0.8);
+        padding: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      .action-buttons-container button {
+        padding: 12px 25px;
+        margin: 0 15px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+        font-size: 16px;
+        font-weight: bold;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .action-buttons-container button:hover {
+        background-color: #45a049;
+      }
+
+      .photo-viewer {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 999;
+      }
+
+      .photo-viewer img {
+        max-width: 95%;
+        max-height: 95%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .close-button {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        padding: 12px 25px;
+        background-color: #f44336;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+        font-size: 16px;
+        font-weight: bold;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .close-button:hover {
+        background-color: #e53935;
+      }
+
+      footer {
+        background-color: #222;
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+        font-size: 14px;
+        box-shadow: 0 -8px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      #name-display {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: #fff;
+        font-size: 26px;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="name-display">MUHAMMAT</div>
+    <header>
+      <h1>精彩壁纸世界</h1>
+    </header>
+    <div class="container">
+      <!-- 假设这里有很多张壁纸 -->
+      <div class="wallpaper" style="background-image: url('BIGI1.jpeg')">
+        <button class="download-individual-button">下载此图</button>
+        <button class="view-individual-button">查看此图</button>
+      </div>
+      <div class="wallpaper" style="background-image: url('BIGI2.jpg')">
+        <button class="download-individual-button">下载此图</button>
+        <button class="view-individual-button">查看此图</button>
+      </div>
+      <div class="wallpaper" style="background-image: url('BIGI3.png')">
+        <button class="download-individual-button">下载此图</button>
+        <button class="view-individual-button">查看此图</button>
+      </div>
+      <div class="wallpaper" style="background-image: url('BIGI4.png')">
+        <button class="download-individual-button">下载此图</button>
+        <button class="view-individual-button">查看此图</button>
+      </div>
+      <div class="wallpaper" style="background-image: url('BIGI5.png')">
+        <button class="download-individual-button">下载此图</button>
+        <button class="view-individual-button">查看此图</button>
+      </div>
+      <div class="wallpaper" style="background-image: url('BIGI6.jpg')">
+        <button class="download-individual-button">下载此图</button>
+        <button class="view-individual-button">查看此图</button>
+      </div>
+      <div class="wallpaper" style="background-image: url('BIGI7.jpg')">
+        <button class="download-individual-button">下载此图</button>
+        <button class="view-individual-button">查看此图</button>
+      </div>
+      <div class="wallpaper" style="background-image: url('BIGI8.jpg')">
+        <button class="download-individual-button">下载此图</button>
+        <button class="view-individual-button">查看此图</button>
+      </div>
+      <div class="wallpaper" style="background-image: url('BIGI9.png')">
+        <button class="download-individual-button">下载此图</button>
+        <button class="view-individual-button">查看此图</button>
+      </div>
+      <div class="wallpaper" style="background-image: url('BIGI10.png')">
+        <button class="download-individual-button">下载此图</button>
+        <button class="view-individual-button">查看此图</button>
+      </div>
+      <div class="wallpaper" style="background-image: url('BIGI11.jpg')">
+        <button class="download-individual-button">下载此图</button>
+        <button class="view-individual-button">查看此图</button>
+      </div>
+      <div class="wallpaper" style="background-image: url('BIGI12.jpg')">
+        <button class="download-individual-button">下载此图</button>
+        <button class="view-individual-button">查看此图</button>
+      </div>
+    </div>
+    <div id="time-display"></div>
+    <div class="action-buttons-container">
+      <button id="share-button">分享图片</button>
+      <button id="about-us-button">关于我们</button>
+    </div>
+    <div class="photo-viewer">
+      <img />
+      <button class="close-button">关闭</button>
+    </div>
+    <footer>&copy; 2024 高级壁纸网页。所有权利保留。</footer>
+    <script>
+      // 为每个单独的查看按钮添加点击事件
+      const viewButtons = document.querySelectorAll(".view-individual-button");
+      viewButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const wallpaper = button.closest(".wallpaper");
+          const photoViewer = document.querySelector(".photo-viewer");
+          const img = photoViewer.querySelector("img");
+          img.src = wallpaper.style.backgroundImage
+            .slice(4, -1)
+            .replace(/"/g, "");
+          photoViewer.style.display = "block";
+        });
+      });
+
+      // 为关闭按钮添加点击事件
+      document.querySelector(".close-button").addEventListener("click", () => {
+        const photoViewer = document.querySelector(".photo-viewer");
+        photoViewer.style.display = "none";
+      });
+
+      // 为每个单独的下载按钮添加点击事件
+      const individualButtons = document.querySelectorAll(
+        ".download-individual-button"
+      );
+      individualButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const wallpaper = button.closest(".wallpaper");
+          const imageUrl = wallpaper.style.backgroundImage
+            .slice(4, -1)
+            .replace(/"/g, "");
+          const a = document.createElement("a");
+          a.href = imageUrl;
+          a.download = "wallpaper.jpg";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        });
+      });
+
+      // 分享图片按钮点击事件
+      document.getElementById("share-button").addEventListener("click", () => {
+        navigator.clipboard.writeText(window.location.href);
+        alert("网页链接已复制到剪贴板！");
+      });
+
+      // 关于我们按钮点击事件
+      document
+        .getElementById("about-us-button")
+        .addEventListener("click", () => {
+          window.location.href = "https://your-about-us-url.com";
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>奢华贪吃蛇游戏</title>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(to bottom right, #222222, #444444);
+        font-family: "Helvetica Neue", sans-serif;
+      }
+
+      #game-board {
+        display: grid;
+        grid-template-columns: repeat(15, 1fr);
+        grid-template-rows: repeat(15, 1fr);
+        width: 300px;
+        height: 300px;
+        border: 3px solid #888888;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        background-color: #111111;
+      }
+
+      .snake-segment {
+        background-color: #00cc66;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+      }
+
+      .food {
+        background-color: #ff6600;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(255, 100, 0, 0.5);
+      }
+
+      .top-buttons {
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      button {
+        font-size: 18px;
+        padding: 12px 18px;
+        background-color: #4d90fe;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        margin: 8px;
+        border-radius: 6px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      button:hover {
+        background-color: #3b78e7;
+        transform: scale(1.05);
+      }
+
+      #m-label {
+        font-size: 30px;
+        position: absolute;
+        top: 180px;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        color: #ffd700;
+        transition: color 0.3s ease;
+      }
+
+      #m-label:hover {
+        color: #ffb90f;
+      }
+
+      .keyboard-container {
+        position: fixed;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .keyboard-row {
+        display: flex;
+        gap: 20px;
+      }
+
+      #score-display {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        color: #fff;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="top-buttons">
+      <button id="start-btn">开始游戏</button>
+    </div>
+    <div
+      style="
+        position: absolute;
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+      "
+    >
+      <button id="restart-btn">重新开始</button>
+    </div>
+    <div id="game-board"></div>
+    <div class="keyboard-container">
+      <div class="keyboard-row">
+        <button id="up-btn">↑</button>
+      </div>
+      <div class="keyboard-row">
+        <button id="left-btn">←</button>
+        <button id="down-btn">↓</button>
+        <button id="right-btn">→</button>
+      </div>
+    </div>
+    <span id="m-label">M</span>
+    <div id="score-display">得分：0</div>
+    <script>
+      const BLOCK_SIZE = 20;
+      const GRID_WIDTH = 15;
+      const GRID_HEIGHT = 15;
+
+      let snake = [
+        [7, 7],
+        [6, 7],
+        [5, 7],
+      ];
+      let direction = [1, 0];
+      let food = generateFood();
+      let isGameRunning = false;
+      let gameSpeed = 250;
+      let score = 0;
+
+      function drawSnake() {
+        const gameBoard = document.getElementById("game-board");
+        gameBoard.innerHTML = "";
+        snake.forEach((segment) => {
+          const snakeSegment = document.createElement("div");
+          snakeSegment.classList.add("snake-segment");
+          snakeSegment.style.gridColumn = segment[0];
+          snakeSegment.style.gridRow = segment[1];
+          gameBoard.appendChild(snakeSegment);
+        });
+      }
+
+      function drawFood() {
+        const gameBoard = document.getElementById("game-board");
+        const foodElement = document.createElement("div");
+        foodElement.classList.add("food");
+        foodElement.style.gridColumn = food[0];
+        foodElement.style.gridRow = food[1];
+        gameBoard.appendChild(foodElement);
+      }
+
+      function generateFood() {
+        let newFood;
+        do {
+          newFood = [
+            Math.floor(Math.random() * GRID_WIDTH),
+            Math.floor(Math.random() * GRID_HEIGHT),
+          ];
+        } while (
+          snake.some(
+            (segment) => segment[0] === newFood[0] && segment[1] === newFood[1]
+          )
+        );
+        return newFood;
+      }
+
+      function moveSnake() {
+        const newHead = [
+          snake[0][0] + direction[0],
+          snake[0][1] + direction[1],
+        ];
+        snake.unshift(newHead);
+        if (newHead[0] === food[0] && newHead[1] === food[1]) {
+          food = generateFood();
+          score++;
+          updateScoreDisplay();
+        } else {
+          snake.pop();
+        }
+      }
+
+      function checkCollision() {
+        const head = snake[0];
+        if (
+          head[0] < 0 ||
+          head[0] >= GRID_WIDTH ||
+          head[1] < 0 ||
+          head[1] >= GRID_HEIGHT ||
+          snake
+            .slice(1)
+            .some((segment) => segment[0] === head[0] && segment[1] === head[1])
+        ) {
+          return true;
+        }
+        return false;
+      }
+
+      function updateScoreDisplay() {
+        document.getElementById("score-display").innerText = `得分：${score}`;
+      }
+
+      document.getElementById("start-btn").addEventListener("click", () => {
+        isGameRunning = true;
+        gameLoop();
+      });
+
+      document.getElementById("restart-btn").addEventListener("click", () => {
+        snake = [
+          [7, 7],
+          [6, 7],
+          [5, 7],
+        ];
+        direction = [1, 0];
+        food = generateFood();
+        isGameRunning = true;
+        score = 0;
+        updateScoreDisplay();
+        gameLoop();
+      });
+
+      document.getElementById("up-btn").addEventListener("click", () => {
+        if (direction[1] !== 1 && isGameRunning) {
+          direction = [0, -1];
+        }
+      });
+
+      document.getElementById("down-btn").addEventListener("click", () => {
+        if (direction[1] !== -1 && isGameRunning) {
+          direction = [0, 1];
+        }
+      });
+
+      document.getElementById("left-btn").addEventListener("click", () => {
+        if (direction[0] !== 1 && isGameRunning) {
+          direction = [-1, 0];
+        }
+      });
+
+      document.getElementById("right-btn").addEventListener("click", () => {
+        if (direction[0] !== -1 && isGameRunning) {
+          direction = [1, 0];
+        }
+      });
+
+      document.getElementById("m-label").addEventListener("click", () => {
+        alert("被你发现了！MUHAMMAT");
+      });
+
+      function gameLoop() {
+        if (isGameRunning && checkCollision()) {
+          isGameRunning = false;
+          alert(`游戏结束！你的得分为：${score}`);
+          return;
+        }
+        if (isGameRunning) {
+          moveSnake();
+          drawSnake();
+          drawFood();
+          setTimeout(gameLoop, gameSpeed);
+        }
+      }
+    </script>
+  </body>
+</html>

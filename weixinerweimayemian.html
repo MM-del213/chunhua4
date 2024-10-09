@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>灰色风格微信二维码</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(to bottom right, #222222, #444444);
+        animation: backgroundShift 10s ease-in-out infinite;
+      }
+
+      @keyframes backgroundShift {
+        0% {
+          background-position: 0% 0%;
+        }
+        50% {
+          background-position: 100% 100%;
+        }
+        100% {
+          background-position: 0% 0%;
+        }
+      }
+
+      .qr-container {
+        background-color: rgba(68, 68, 68, 0.8);
+        backdrop-filter: blur(20px);
+        border-radius: 30px;
+        padding: 40px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .qr-code img {
+        width: 300px;
+        border: 6px solid rgba(85, 85, 85, 0.5);
+        border-radius: 15px;
+        box-shadow: 0 0 40px rgba(128, 128, 128, 0.5);
+      }
+
+      .qr-label {
+        font-size: 28px;
+        font-weight: bold;
+        color: #cccccc;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="qr-container">
+      <div class="qr-code">
+        <img src="weixinerweima.jpg" alt="微信二维码" />
+      </div>
+      <div class="qr-label">微信扫码，获取密码。</div>
+    </div>
+  </body>
+</html>
